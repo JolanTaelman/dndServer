@@ -6,7 +6,7 @@ module.exports = function(app) {
     .get(sheetList.getSheets)
     .post(sheetList.createSheet);
 
-  app.route('/sheets/:sheetid')
+  app.route('/sheets/:sheetId')
     .get(sheetList.getSheet)
     .put(sheetList.updateSheet)
     .delete(sheetList.deleteSheet);

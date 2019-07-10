@@ -2,6 +2,7 @@
 
 var mongoose = require('mongoose'),
 Sheet = mongoose.model('Sheets');
+var ObjectId = require('mongodb').ObjectID;
 
 exports.getSheets = function(req, res) {
   Sheet.find({}, function(err, sheet) {
@@ -21,9 +22,14 @@ exports.createSheet = function(req, res) {
 };
 
 exports.getSheet = function(req, res) {
-  Sheet.findById(req.params.sheetId, function(err, sheet) {
-    if (err)
+  var id = ObjectId(req.params.sheetId)
+  console.log("id: ", id),
+  Sheet.findById(id, function(err, sheet) {
+    if (err){
+      console.log("error")
       res.send(err);
+    }
+    console.log(sheet)
     res.json(sheet);
   });
 };
